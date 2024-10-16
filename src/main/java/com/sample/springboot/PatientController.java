@@ -54,7 +54,7 @@ public class PatientController {
         System.out.println("Added a new patient");
     }
 
-    @GetMapping("/patients/{id}")
+    @GetMapping("/patient/{id}")
     PatientInfo getPatient(@PathVariable Integer id) throws Exception {
 
         BufferedReader br = new BufferedReader(new FileReader("patients.txt"));
@@ -63,13 +63,13 @@ public class PatientController {
             System.out.println(line);
 
             String[] fields = line.split("\\|\\|");
-            int idField = Integer.getInteger(fields[0]);
+            int idField = Integer.parseInt(fields[0]);
 
             if(id == idField) {
                 PatientInfo patientInfo = new PatientInfo();
-                patientInfo.id = Integer.getInteger(fields[0]);
+                patientInfo.id = Integer.parseInt(fields[0]);
                 patientInfo.name = fields[1];
-                patientInfo.age = Integer.getInteger(fields[2]);
+                patientInfo.age = Integer.parseInt(fields[2]);
                 patientInfo.allergies = fields[3];
                 return patientInfo;
             }
